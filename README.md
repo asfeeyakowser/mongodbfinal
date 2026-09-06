@@ -65,12 +65,60 @@ Display the final Products collection and verify the changes made through the CR
 Execute all the MongoDB commands, capture the required outputs, commit the completed experiment, and push the changes to the forked GitHub repository.
 
 ## PROGRAM:
+To create a database
 
-*(Paste the MongoDB commands for performing Create, Read, Update, and Delete operations on the Products collection here.)*
+use mydb To create collection "product"
+
+db.createCollection("products") To insert all documents in product collections
+
+db.products.insertMany([ { _id: 1, name: "Laptop", brand: "Dell", price: 55000, category: "Electronics", stock: 30, tags: ["computer", "technology"] }, { _id: 2, name: "Smartphone", brand: "Samsung", price: 30000, category: "Electronics", stock: 50, tags: ["mobile", "android"] }, { _id: 3, name: "Headphones", brand: "Sony", price: 2500, category: "Accessories", stock: 100, tags: ["audio", "music"] }, { _id: 4, name: "Smartwatch", brand: "Apple", price: 45000, category: "Electronics", stock: 20, tags: ["wearable", "ios"] }, { _id: 5, name: "Keyboard", brand: "Logitech", price: 1200, category: "Accessories", stock: 80, tags: ["computer", "typing"] } ]) To read all documents in product collections
+
+db.products.find().pretty() To read products below 5000
+
+db.products.find({ price: { $lt: 5000 } }) To read only accessories
+
+db.products.find({ category: "Accessories" }) To read electronics below 50,000
+
+db.products.find({ $and: [ { category: "Electronics" }, { price: { $lt: 50000 } } ] }) To update laptop price
+
+db.products.updateOne( { name: "Laptop" }, { $set: { price: 52000 } } ) To increase keyboard stock by 10
+
+db.products.updateOne( { name: "Keyboard" }, { $inc: { stock: 10 } } ) To add premium tag to smartwatch
+
+db.products.updateOne( { name: "Smartwatch" }, { $push: { tags: "premium" } } ) To delete Keyboard
+
+db.products.deleteOne({ name: "Keyboard" })
 
 ## OUTPUT:
+After Insertions
 
-*(Paste the execution output showing product insertion, retrieval of documents, updated product information, deletion of a product, and the final Products collection here.)*
+<img width="806" height="93" alt="image" src="https://github.com/user-attachments/assets/63ef700a-60a4-4797-85a4-98a049a78cfb" />
+
+After read operation
+
+<img width="442" height="722" alt="image" src="https://github.com/user-attachments/assets/0955c389-620f-48f2-9e32-2f5ea6d3b968" />
+
+To read products below 5000
+
+<img width="555" height="482" alt="image" src="https://github.com/user-attachments/assets/42f0bdd9-2606-41c9-b7f0-9773741dd13f" />
+
+To read only accessories
+
+<img width="541" height="470" alt="image" src="https://github.com/user-attachments/assets/bead638e-7357-434c-a0fc-3b03d48bc567" />
+
+To read electronics below 50,000
+
+<img width="690" height="455" alt="image" src="https://github.com/user-attachments/assets/41b22124-df85-4e9b-ab47-e92356282467" />
+
+After updating the product collections
+
+<img width="526" height="721" alt="image" src="https://github.com/user-attachments/assets/2db6bf11-d99c-496b-b159-ab730d54ef6f" />
+
+After delete operation in product collection
+
+<img width="525" height="643" alt="image" src="https://github.com/user-attachments/assets/60fa66b1-7a2f-444b-b427-bfc6186c6703" />
+
+
 
 ## RESULT:
 
